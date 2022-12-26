@@ -2,9 +2,6 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://localhost:1313/</loc><lastmod>2022-12-26T15:57:57&#43;05:30</lastmod></url><url>
-            <loc>http://localhost:1313/posts/post1/</loc><lastmod>2022-12-26T15:57:57&#43;05:30</lastmod></url><url>
-            <loc>http://localhost:1313/posts/</loc><lastmod>2022-12-26T15:57:57&#43;05:30</lastmod></url><url>
-            <loc>http://localhost:1313/posts/first/</loc><lastmod>2022-12-26T15:49:56&#43;05:30</lastmod></url><url>
-            <loc>http://localhost:1313/categories/</loc></url><url>
-            <loc>http://localhost:1313/tags/</loc></url></urlset>
+            <loc>https://akhils911dev.github.io/theblog/categories/</loc></url><url>
+            <loc>https://akhils911dev.github.io/theblog/</loc></url><url>
+            <loc>https://akhils911dev.github.io/theblog/tags/</loc></url></urlset>
