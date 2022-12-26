@@ -1,9 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>MyBlog</title>
-        <link>https://akhils911dev.github.io/theblog/</link>
+        <link>https://akhils911dev.github.io/</link>
         <description>This is my cool site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language>
-            <atom:link href="https://akhils911dev.github.io/theblog/index.xml" rel="self" type="application/rss+xml" />
+            <atom:link href="https://akhils911dev.github.io/index.xml" rel="self" type="application/rss+xml" />
         </channel>
 </rss>
