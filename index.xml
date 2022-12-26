@@ -3,7 +3,15 @@
         <title>MyBlog</title>
         <link>https://akhils911dev.github.io/theblog/</link>
         <description>This is my cool site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 26 Dec 2022 17:20:53 &#43;0530</lastBuildDate>
             <atom:link href="https://akhils911dev.github.io/theblog/index.xml" rel="self" type="application/rss+xml" />
-        </channel>
+        <item>
+    <title>Test</title>
+    <link>https://akhils911dev.github.io/theblog/posts/test/</link>
+    <pubDate>Mon, 26 Dec 2022 17:20:53 &#43;0530</pubDate>
+    <author>Akhil</author>
+    <guid>https://akhils911dev.github.io/theblog/posts/test/</guid>
+    <description><![CDATA[]]></description>
+</item>
+</channel>
 </rss>
