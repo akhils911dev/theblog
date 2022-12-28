@@ -6,8 +6,7 @@
         <meta name="robots" content="noodp" />
         <title>Timing -Hack The Box - Blog</title><meta name="Description" content=""><meta property="og:title" content="Timing -Hack The Box" />
 <meta property="og:description" content="Timing -Hack The Box
-Summary
-Timing is the Hack The Box boot2root machine which is a fun box with a lot of enumeration. The machine runs a simple PHP web server. Enumerating the web directory we discovered an image.php file. Fuzzing that PHP file we found a parameter &ldquo;?img=&rdquo; if we pass /etc/passwd the server simply responds with a message &ldquo;hacking detected&rdquo; if we use a php wrapper with base64 encoding we will have a successful LFI Vulnerability." />
+Summary Timing is the Hack The Box boot2root machine which is a fun box with a lot of enumeration. The machine runs a simple PHP web server. Enumerating the web directory we discovered an image.php file. Fuzzing that PHP file we found a parameter &ldquo;?img=&rdquo; if we pass /etc/passwd the server simply responds with a message &ldquo;hacking detected&rdquo; if we use a php wrapper with base64 encoding we will have a successful LFI Vulnerability." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://akhils911dev.github.io/theblog/posts/hackthebox-timing/" /><meta property="og:image" content="https://akhils911dev.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-03-04T15:58:26+08:00" />
@@ -18,8 +17,7 @@ Timing is the Hack The Box boot2root machine which is a fun box with a lot of en
 
 <meta name="twitter:title" content="Timing -Hack The Box"/>
 <meta name="twitter:description" content="Timing -Hack The Box
-Summary
-Timing is the Hack The Box boot2root machine which is a fun box with a lot of enumeration. The machine runs a simple PHP web server. Enumerating the web directory we discovered an image.php file. Fuzzing that PHP file we found a parameter &ldquo;?img=&rdquo; if we pass /etc/passwd the server simply responds with a message &ldquo;hacking detected&rdquo; if we use a php wrapper with base64 encoding we will have a successful LFI Vulnerability."/>
+Summary Timing is the Hack The Box boot2root machine which is a fun box with a lot of enumeration. The machine runs a simple PHP web server. Enumerating the web directory we discovered an image.php file. Fuzzing that PHP file we found a parameter &ldquo;?img=&rdquo; if we pass /etc/passwd the server simply responds with a message &ldquo;hacking detected&rdquo; if we use a php wrapper with base64 encoding we will have a successful LFI Vulnerability."/>
 <meta name="application-name" content="My cool site">
 <meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="https://akhils911dev.github.io/theblog/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="https://akhils911dev.github.io/theblog/favicon-32x32.png">
@@ -32,7 +30,7 @@ Timing is the Hack The Box boot2root machine which is a fun box with a lot of en
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/akhils911dev.github.io\/theblog\/posts\/hackthebox-timing\/"
-        },"genre": "posts","wordcount":  2117 ,
+        },"genre": "posts","keywords": "LFI vulnerability, PHP wrapper with base64 encoding, RCE, SSH password cracking, Netutils abuse, Root access, Hack The Box, Enumeration, Web server security, File inclusion attacks, PHP web server, Git repository enumeration, Admin panel, Image upload vulnerability, Authorized keys abuse","wordcount":  2118 ,
         "url": "https:\/\/akhils911dev.github.io\/theblog\/posts\/hackthebox-timing\/","datePublished": "2020-03-04T15:58:26+08:00","dateModified": "2020-03-04T15:58:26+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -49,7 +47,7 @@ Timing is the Hack The Box boot2root machine which is a fun box with a lot of en
             <a href="https://akhils911dev.github.io/theblog/" title="Blog">Home</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="https://akhils911dev.github.io/theblog/posts/"> Posts </a><a class="menu-item" href="https://akhils911dev.github.io/theblog/about/"> About </a><a class="menu-item" href="https://akhils911dev.github.io/theblog/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item" href="https://akhils911dev.github.io/theblog/posts/"> Posts </a><a class="menu-item" href="https://akhils911dev.github.io/theblog/tags/"> Tags </a><a class="menu-item" href="https://akhils911dev.github.io/theblog/about/"> About </a><a class="menu-item" href="https://akhils911dev.github.io/theblog/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
                         <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
                             <i class="fas fa-search fa-fw" aria-hidden="true"></i>
@@ -92,7 +90,7 @@ Timing is the Hack The Box boot2root machine which is a fun box with a lot of en
                     <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
                         Cancel
                     </a>
-                </div><a class="menu-item" href="https://akhils911dev.github.io/theblog/posts/" title="">Posts</a><a class="menu-item" href="https://akhils911dev.github.io/theblog/about/" title="">About</a><a class="menu-item" href="https://akhils911dev.github.io/theblog/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                </div><a class="menu-item" href="https://akhils911dev.github.io/theblog/posts/" title="">Posts</a><a class="menu-item" href="https://akhils911dev.github.io/theblog/tags/" title="">Tags</a><a class="menu-item" href="https://akhils911dev.github.io/theblog/about/" title="">About</a><a class="menu-item" href="https://akhils911dev.github.io/theblog/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
             </a></div>
     </div>
@@ -107,8 +105,8 @@ Timing is the Hack The Box boot2root machine which is a fun box with a lot of en
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Timing -Hack The Box</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://akhils911dev.github.io/theblog/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Akhil</a>
-</span>&nbsp;<span class="post-category">included in <a href="https://akhils911dev.github.io/theblog/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>ctf</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-03-04">2020-03-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2117 words&nbsp;
+</span>&nbsp;<span class="post-category">included in <a href="https://akhils911dev.github.io/theblog/categories/hackthebox/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>HackThebox</a>&nbsp;<a href="https://akhils911dev.github.io/theblog/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-03-04">2020-03-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2118 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -122,34 +120,44 @@ Timing is the Hack The Box boot2root machine which is a fun box with a lot of en
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#recon">Recon</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
             </div><div class="content" id="content"><p>Timing -Hack The Box</p>
-<p>Summary</p>
+<h3 id="summary">Summary</h3>
 <p>Timing is the Hack The Box boot2root machine which is a fun box with a lot of enumeration.
 The machine runs a simple PHP web server. Enumerating the web directory we discovered an image.php file. Fuzzing that PHP file we found a parameter &ldquo;?img=&rdquo; if we pass /etc/passwd the server simply responds with a message &ldquo;hacking detected&rdquo; if we use a php wrapper with base64 encoding we will have a successful LFI Vulnerability. Reading the /etc/passwd we got the username aaron login the web with credentials aaron:aaron after login it has an edit profile menu which gave them access to the admin panel and allow us to upload image after the uploading the image with php payload we must find the file name and get the RCE, enumerating the server directories we find a backup file in the /opt directory it contains a git repository enumerating the file we find ssh password access the machine through ssh after that abuse the netutils to overwrite the authorized_keys and get root access</p>
+<h3 id="recon">Recon</h3>
 <p>Run the nmap scan:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"># Nmap 7.92 scan initiated Fri Jan 28 23:12:43 2022 as: nmap -sCV -A -o nmapscan.txt 10.10.11.135
-Nmap scan report for timing.htb (10.10.11.135)
-Host is up (0.65s latency).
-Not shown: 998 closed tcp ports (conn-refused)
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Nmap 7.92 scan initiated Fri Jan 28 23:12:43 2022 as: nmap -sCV -A -o nmapscan.txt 10.10.11.135</span>
+Nmap scan report <span class="k">for</span> timing.htb <span class="o">(</span>10.10.11.135<span class="o">)</span>
+Host is up <span class="o">(</span>0.65s latency<span class="o">)</span>.
+Not shown: <span class="m">998</span> closed tcp ports <span class="o">(</span>conn-refused<span class="o">)</span>
 PORT   STATE SERVICE VERSION
-22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
-| ssh-hostkey: 
-|   2048 d2:5c:40:d7:c9:fe:ff:a8:83:c3:6e:cd:60:11:d2:eb (RSA)
-|   256 18:c9:f7:b9:27:36:a1:16:59:23:35:84:34:31:b3:ad (ECDSA)
-|_  256 a2:2d:ee:db:4e:bf:f9:3f:8b:d4:cf:b4:12:d8:20:f2 (ED25519)
-80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
-| http-title: Simple WebApp
-|_Requested resource was ./login.php
-| http-cookie-flags: 
-|   /: 
-|     PHPSESSID: 
-|_      httponly flag not set
-|_http-server-header: Apache/2.4.29 (Ubuntu)
-Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.5 <span class="o">(</span>Ubuntu Linux<span class="p">;</span> protocol 2.0<span class="o">)</span>
+<span class="p">|</span> ssh-hostkey: 
+<span class="p">|</span>   <span class="m">2048</span> d2:5c:40:d7:c9:fe:ff:a8:83:c3:6e:cd:60:11:d2:eb <span class="o">(</span>RSA<span class="o">)</span>
+<span class="p">|</span>   <span class="m">256</span> 18:c9:f7:b9:27:36:a1:16:59:23:35:84:34:31:b3:ad <span class="o">(</span>ECDSA<span class="o">)</span>
+<span class="p">|</span>_  <span class="m">256</span> a2:2d:ee:db:4e:bf:f9:3f:8b:d4:cf:b4:12:d8:20:f2 <span class="o">(</span>ED25519<span class="o">)</span>
+80/tcp open  http    Apache httpd 2.4.29 <span class="o">((</span>Ubuntu<span class="o">))</span>
+<span class="p">|</span> http-title: Simple WebApp
+<span class="p">|</span>_Requested resource was ./login.php
+<span class="p">|</span> http-cookie-flags: 
+<span class="p">|</span>   /: 
+<span class="p">|</span>     PHPSESSID: 
+<span class="p">|</span>_      httponly flag not <span class="nb">set</span>
+<span class="p">|</span>_http-server-header: Apache/2.4.29 <span class="o">(</span>Ubuntu<span class="o">)</span>
+Service Info: OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-# Nmap done at Fri Jan 28 23:14:33 2022 -- 1 IP address (1 host up) scanned in 110.52 seconds
+<span class="c1"># Nmap done at Fri Jan 28 23:14:33 2022 -- 1 IP address (1 host up) scanned in 110.52 seconds</span>
 </code></pre></div><p>Notice the two usual and classic open ports: ssh on port 22 and http on port 80 I immediately put the domain timing.htb in my /etc/hosts file and I also noticed the login.php file name which means it is a PHP  server</p>
 <p>Navigating the web <a href="http://timing.htb" target="_blank" rel="noopener noreffer">http://timing.htb</a>
  it&rsquo;s running
@@ -590,13 +598,13 @@ Let&rsquo;s login with our id_rsa</p>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://akhils911dev.github.io/theblog/posts/hackthebox-timing/" data-title="Timing -Hack The Box" data-via="akhil0x8"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://akhils911dev.github.io/theblog/posts/hackthebox-timing/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://akhils911dev.github.io/theblog/posts/hackthebox-timing/" data-title="Timing -Hack The Box"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://akhils911dev.github.io/theblog/posts/hackthebox-timing/" data-title="Timing -Hack The Box"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@6.20.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://akhils911dev.github.io/theblog/posts/hackthebox-timing/" data-title="Timing -Hack The Box" data-image="/img/Timing.png"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://akhils911dev.github.io/theblog/posts/hackthebox-timing/" data-title="Timing -Hack The Box" data-via="akhil0x8" data-hashtags="LFI vulnerability,PHP wrapper with base64 encoding,RCE,SSH password cracking,Netutils abuse,Root access,Hack The Box,Enumeration,Web server security,File inclusion attacks,PHP web server,Git repository enumeration,Admin panel,Image upload vulnerability,Authorized keys abuse"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://akhils911dev.github.io/theblog/posts/hackthebox-timing/" data-hashtag="LFI vulnerability"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://akhils911dev.github.io/theblog/posts/hackthebox-timing/" data-title="Timing -Hack The Box"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://akhils911dev.github.io/theblog/posts/hackthebox-timing/" data-title="Timing -Hack The Box"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@6.20.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://akhils911dev.github.io/theblog/posts/hackthebox-timing/" data-title="Timing -Hack The Box" data-image="/img/Timing.png"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/lfi-vulnerability/">LFI vulnerability</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/php-wrapper-with-base64-encoding/">PHP wrapper with base64 encoding</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/rce/">RCE</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/ssh-password-cracking/">SSH password cracking</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/netutils-abuse/">Netutils abuse</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/root-access/">Root access</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/hack-the-box/">Hack The Box</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/enumeration/">Enumeration</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/web-server-security/">Web server security</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/file-inclusion-attacks/">File inclusion attacks</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/php-web-server/">PHP web server</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/git-repository-enumeration/">Git repository enumeration</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/admin-panel/">Admin panel</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/image-upload-vulnerability/">Image upload vulnerability</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/authorized-keys-abuse/">Authorized keys abuse</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://akhils911dev.github.io/theblog/">Home</a></span>
         </section>

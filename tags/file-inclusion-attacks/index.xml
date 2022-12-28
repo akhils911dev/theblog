@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>File inclusion attacks - Tag - Blog</title>
+        <link>https://akhils911dev.github.io/theblog/tags/file-inclusion-attacks/</link>
+        <description>File inclusion attacks - Tag - Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 04 Mar 2020 15:58:26 &#43;0800</lastBuildDate><atom:link href="https://akhils911dev.github.io/theblog/tags/file-inclusion-attacks/" rel="self" type="application/rss+xml" /><item>
+    <title>Timing -Hack The Box</title>
+    <link>https://akhils911dev.github.io/theblog/posts/hackthebox-timing/</link>
+    <pubDate>Wed, 04 Mar 2020 15:58:26 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://akhils911dev.github.io/theblog/posts/hackthebox-timing/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/img/Timing.png" referrerpolicy="no-referrer">
+            </div>Timing -Hack The Box
+Summary Timing is the Hack The Box boot2root machine which is a fun box with a lot of enumeration. The machine runs a simple PHP web server. Enumerating the web directory we discovered an image.php file. Fuzzing that PHP file we found a parameter &ldquo;?img=&rdquo; if we pass /etc/passwd the server simply responds with a message &ldquo;hacking detected&rdquo; if we use a php wrapper with base64 encoding we will have a successful LFI Vulnerability.]]></description>
+</item>
+</channel>
+</rss>

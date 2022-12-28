@@ -12,8 +12,7 @@
     <description><![CDATA[<div class="featured-image">
                 <img src="/img/Timing.png" referrerpolicy="no-referrer">
             </div>Timing -Hack The Box
-Summary
-Timing is the Hack The Box boot2root machine which is a fun box with a lot of enumeration. The machine runs a simple PHP web server. Enumerating the web directory we discovered an image.php file. Fuzzing that PHP file we found a parameter &ldquo;?img=&rdquo; if we pass /etc/passwd the server simply responds with a message &ldquo;hacking detected&rdquo; if we use a php wrapper with base64 encoding we will have a successful LFI Vulnerability.]]></description>
+Summary Timing is the Hack The Box boot2root machine which is a fun box with a lot of enumeration. The machine runs a simple PHP web server. Enumerating the web directory we discovered an image.php file. Fuzzing that PHP file we found a parameter &ldquo;?img=&rdquo; if we pass /etc/passwd the server simply responds with a message &ldquo;hacking detected&rdquo; if we use a php wrapper with base64 encoding we will have a successful LFI Vulnerability.]]></description>
 </item>
 </channel>
 </rss>
