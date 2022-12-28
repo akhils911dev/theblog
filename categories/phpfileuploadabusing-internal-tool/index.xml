@@ -1,11 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Blog</title>
-        <link>https://akhils911dev.github.io/theblog/</link>
-        <description>Blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 04 Mar 2020 15:58:26 &#43;0800</lastBuildDate>
-            <atom:link href="https://akhils911dev.github.io/theblog/index.xml" rel="self" type="application/rss+xml" />
-        <item>
+        <title>php,fileupload,abusing internal tool - Category - Blog</title>
+        <link>https://akhils911dev.github.io/theblog/categories/phpfileuploadabusing-internal-tool/</link>
+        <description>php,fileupload,abusing internal tool - Category - Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 04 Mar 2020 15:58:26 &#43;0800</lastBuildDate><atom:link href="https://akhils911dev.github.io/theblog/categories/phpfileuploadabusing-internal-tool/" rel="self" type="application/rss+xml" /><item>
     <title>Timing -Hack The Box</title>
     <link>https://akhils911dev.github.io/theblog/posts/hackthebox-timing/</link>
     <pubDate>Wed, 04 Mar 2020 15:58:26 &#43;0800</pubDate>
