@@ -3,8 +3,8 @@
 
 ## Summary
 
-Starting with the web application that has a webhook feature.It is vulnerable to SSRF using a Python script called "redirect.py
-to redirect traffic to the web application that has running internaly on port 3000, and then attempting to perform a SQL injection attack by sending UNION ALL SELECT statements through the redirecter and enumerate databases in order to extract information from the database.using credntioal we got from database to take ssh as user.abusing the same webhook feature to grabroot user private key and take the ssh as root.
+Starting with the web application that has a webhook feature.It is vulnerable to SSRF using a Python script called "redirect.py"
+to redirect traffic to the web application that has running internaly on port 3000, and then attempting to perform a SQL injection attack by sending UNION ALL SELECT statements through the redirecter and enumerate databases in order to extract information from the database.using credntioal we got from database to take ssh as user. Abusing the same webhook feature to grab root user private key and take the shell as root.
 
 ## Recon
 
@@ -67,18 +67,14 @@ we need to configure the webhook request with our configuration
 Make a test request the script running on our local machine will redirect the request to localhost:3000 and it will send back the source code as the response on our netcat listener
 ![image](/img/receive.png)
 
-Inspecting the source code we can identified the service which is running on port 3000 is an gogs also it reveal the version it is an outdate version of gogs 
+By inspecting the source code, we have identified that the service running on port 3000 is an instance of Gogs. It appears to be an outdated version of Gogs based on the version number we found in the code 
 >gogs a self-hosted git service written in go
 
 Looking for public exploites we can find a sql vulnerabilities in this version with poc's
 
 ## Foothold
 ### Sql Injection
-Unauthenticated SQL Injection in Gogs user search. Gogs provides an api view to give javascript code the possibility to
-search forexisting users in the system. This view is accessible at /api/v1/users/search?q=<search query>.The q Parameter of
-this view is vulnerable to SQL injection.The vulnerability results at least in a complete compromise of the database.
-Referance from exploitdb [https://www.exploit-db.com/exploits/35238](https://www.exploit-db.com/exploits/35238)
-Attack technique Union based injection
+Gogs is vulnerable to unauthenticated SQL injection attacks through its user search API endpoint. The endpoint, located at /api/v1/users/search, allows JavaScript code to search for existing users within the system by passing a search query in the 'q' parameter. However, this parameter is susceptible to injection attacks, which can potentially lead to complete compromise of the database. This vulnerability is documented in ExploitDB at the following link: https://www.exploit-db.com/exploits/35238.
 
 Back to webhook we did the last and run the redirect scrtpt with this payload
 ```bash
