@@ -2,11 +2,12 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://akhils911dev.github.io/theblog/about/</loc><lastmod>2022-12-26T17:20:53&#43;05:30</lastmod></url><url>
-            <loc>https://akhils911dev.github.io/theblog/</loc><lastmod>2020-03-04T15:58:26&#43;08:00</lastmod></url><url>
-            <loc>https://akhils911dev.github.io/theblog/categories/</loc><lastmod>2020-03-04T15:58:26&#43;08:00</lastmod></url><url>
-            <loc>https://akhils911dev.github.io/theblog/categories/ctf/</loc><lastmod>2020-03-04T15:58:26&#43;08:00</lastmod></url><url>
-            <loc>https://akhils911dev.github.io/theblog/categories/hackthebox/</loc><lastmod>2020-03-04T15:58:26&#43;08:00</lastmod></url><url>
-            <loc>https://akhils911dev.github.io/theblog/posts/health/</loc><lastmod>2020-03-04T15:58:26&#43;08:00</lastmod></url><url>
-            <loc>https://akhils911dev.github.io/theblog/posts/</loc><lastmod>2020-03-04T15:58:26&#43;08:00</lastmod></url><url>
-            <loc>https://akhils911dev.github.io/theblog/tags/</loc></url></urlset>
+            <loc>https://akhils911dev.github.io/theblog/</loc><lastmod>2022-12-29T23:12:25&#43;05:30</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://akhils911dev.github.io/theblog/categories/</loc><lastmod>2022-12-29T23:12:25&#43;05:30</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://akhils911dev.github.io/theblog/categories/ctf/</loc><lastmod>2022-12-29T23:12:25&#43;05:30</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://akhils911dev.github.io/theblog/categories/hackthebox/</loc><lastmod>2022-12-29T23:12:25&#43;05:30</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://akhils911dev.github.io/theblog/health/</loc><lastmod>2022-12-29T23:12:25&#43;05:30</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://akhils911dev.github.io/theblog/posts/</loc><lastmod>2022-12-29T23:12:25&#43;05:30</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://akhils911dev.github.io/theblog/categories/webhook/</loc><lastmod>2022-12-29T23:12:25&#43;05:30</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://akhils911dev.github.io/theblog/about/</loc><lastmod>2022-12-26T17:20:53&#43;05:30</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://akhils911dev.github.io/theblog/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
