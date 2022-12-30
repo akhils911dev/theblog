@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>SSRF - Tag - Blog</title>
+        <link>https://akhils911dev.github.io/theblog/tags/ssrf/</link>
+        <description>SSRF - Tag - Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 29 Dec 2022 23:12:25 &#43;0530</lastBuildDate><atom:link href="https://akhils911dev.github.io/theblog/tags/ssrf/" rel="self" type="application/rss+xml" /><item>
+    <title>Health -Hack The Box</title>
+    <link>https://akhils911dev.github.io/theblog/health/</link>
+    <pubDate>Thu, 29 Dec 2022 23:12:25 &#43;0530</pubDate>
+    <author>Author</author>
+    <guid>https://akhils911dev.github.io/theblog/health/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/img/Health.png" referrerpolicy="no-referrer">
+            </div>Summary Starting with the web application that has a webhook feature.It is vulnerable to SSRF using a Python script called &ldquo;redirect.py&rdquo; to redirect traffic to the web application that has running internaly on port 3000, and then attempting to perform a SQL injection attack by sending UNION ALL SELECT statements through the redirecter and enumerate databases in order to extract information from the database.using credntioal we got from database to take ssh as user.]]></description>
+</item>
+</channel>
+</rss>
