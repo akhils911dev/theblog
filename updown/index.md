@@ -153,7 +153,7 @@ Our uploaded file
 It was successfully hit the callback to my server and remove once it's done.
 ## Foothold
 
-what we can do is we need to bypass the fillers and upload a php file to gain code execution.I uploaded a phar and got worked up because it wasn't included in the filter list. To see what functions are available, I uploaded the phar file and used the phpinfo function. Unfortunately, normal system functions are disabled except "proc_open.".
+what we can do is we need to bypass the fillers and upload a php file to gain code execution.I uploaded a phar file and got worked up because it wasn't included in the filter list. To see what functions are available, I uploaded the phar file and used the phpinfo function. Unfortunately, normal system functions are disabled except "proc_open.".
 
 
 Created a revershell with proc_open
