@@ -201,5 +201,7 @@ Running setup.py -q bdist_egg --dist-dir /tmp/tmp.zMbAjkFXvF/egg-dist-tmp-AIs2rL
 # id
 uid=0(root) gid=0(root) groups=0(root)
 ```
-Now we rooted.
+Now we get the root access.
+
+Thank you for reading my blog; I hope you enjoyed it.
 
