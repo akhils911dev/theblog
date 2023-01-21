@@ -26,7 +26,6 @@ Run a feroxbuster scan to fuzz the hidden diretory's we can found /dev and it's 
 wget recursively downloaded the directory to our local machine.
 
 ```bash
-Git branch -a
 Git log main
 commit 8812785e31c879261050e72e20f298ae8c43b565
 Author: Abdou.Y <84577967+ab2pentest@users.noreply.github.com>
@@ -51,13 +50,99 @@ index 44ff240..b317ab5 100644
  Allow from env=Required-Header
 ```
 
-Exploring the local git directory, which has only one branch, main, we checked every entry in the change log for main and found an interesting commit message."new technique in headers to protect our development vhost" Using the git show command, we can see the changes in this commit. It has another juicy piece of information to access the domain: a custom header, "Special-Dev: only4dev."From all of these details, we can understand that siteisup.htb has a vhost named "dev" and that it only has access via the custom header. We can also fuzz the subdoamin using ffuf to reveal the subdoamin.
+Exploring the local git directory, which has only one branch, main, first we checked every entry in the change log for main and found an interesting commit message.**"new technique in headers to protect our development vhost"** Using the git show command, we can see the changes in this commit. It has another juicy piece of information to access the domain: a custom header, "Special-Dev: only4dev." added to .htaccess.
+
+Next i run "git checkout ." it dumps six files. 
+
+```bash
+user@ubuntu:~/htb/updown/dev$ ls -la
+total 40
+drwxr-xr-x 3 user user 4096 Jan 21 21:21 .
+drwxr-xr-x 4 user user 4096 Sep  5 09:53 ..
+-rw-rw-r-- 1 user user   59 Jan 21 21:21 admin.php
+-rw-rw-r-- 1 user user  147 Jan 21 21:21 changelog.txt
+-rw-rw-r-- 1 user user 3145 Jan 21 21:21 checker.php
+drwxr-xr-x 8 user user 4096 Jan 21 21:24 .git
+-rw-rw-r-- 1 user user  117 Jan 21 21:21 .htaccess
+-rw-rw-r-- 1 user user  273 Jan 21 21:21 index.php
+-rw-rw-r-- 1 user user 5531 Jan 21 21:21 stylesheet.css
+```
+
+
+From all of these details, we can understand that siteisup.htb has a vhost named "dev" and that it only has access via the custom header. We can also fuzz the subdoamin using ffuf to reveal the subdoamin.
+
+### Source code
+
+Reviewing checker.php 
+```php
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <h1 id="project_title">Welcome,<br> Is My Website UP ?</h1>
+          <h2 id="project_tagline">In this version you are able to scan a list of websites !</h2>
+        </header>
+    </div>
+
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <form method="post" enctype="multipart/form-data">
+          <label>List of websites to check:</label><br><br>
+        <input type="file" name="file" size="50">
+        <input name="check" type="submit" value="Check">
+    </form>
+
+if($_POST['check']){
+  
+  # File size must be less than 10kb.
+  if ($_FILES['file']['size'] > 10000) {
+        die("File too large!");
+    }
+  $file = $_FILES['file']['name'];
+  
+  # Check if extension is allowed.
+  $ext = getExtension($file);
+  if(preg_match("/php|php[0-9]|html|py|pl|phtml|zip|rar|gz|gzip|tar/i",$ext)){
+    die("Extension not allowed!");
+  }
+  
+  # Create directory to upload our file.
+  $dir = "uploads/".md5(time())."/";
+  if(!is_dir($dir)){
+        mkdir($dir, 0770, true);
+    }
+
+# Upload the file.
+  $final_path = $dir.$file;
+  move_uploaded_file($_FILES['file']['tmp_name'], "{$final_path}");
+  
+  # Read the uploaded file.
+  $websites = explode("\n",file_get_contents($final_path));
+  
+  foreach($websites as $site){
+    $site=trim($site);
+    if(!preg_match("#file://#i",$site) && !preg_match("#data://#i",$site) && !preg_match("#ftp://#i",$site)){
+      $check=isitup($site);
+      if($check){
+        echo "<center>{$site}<br><font color='green'>is up ^_^</font></center>";
+      }else{
+        echo "<center>{$site}<br><font color='red'>seems to be down :(</font></center>";
+      } 
+    }else{
+      echo "<center><font color='red'>Hacking attempt was detected !</font></center>";
+    }
+  }
+  
+  # Delete the uploaded file.
+  @unlink($final_path);
+}
+```
+It seems that we can upload files to check if the website is up or down. When we upload the file, it goes to the /uploads directory and is named with the MD5 hash. It was also removed after it was checked. Also, it has a filter to validate the extensions and some other security measures.
+
 
 ### Developers site   
-Adding dev.siteisup.htb to host file and the help of burpsuite match and replace option to add the coustom header we can opened the dev site.
+Adding dev.siteisup.htb to host file and the help of burpsuite match and replace option to add the coustom header we can now opened the dev site.
 ![image](/img/updown-dev.png)
 
-It seems that we can upload files to check if the website is up or down. To test the upload functions, I created a txt file with my tun0 interface IP. When we upload the file, it goes to the /uploads directory and is named with the MD5 hash. It was also removed after it was checked.
+To test the upload functions, I created a txt file with my tun0 interface IP.
 
 Upload directory
 ![image](/img/updown-hash.png)   
@@ -65,11 +150,10 @@ Upload directory
 Our uploaded file
 ![image](/img/updown-ourfile.png)
 
-Also, I tried to upload a php file, but it was failed due to some fillers. We got the response, "Extension not allowed!"
-
+It was successfully hit the callback to my server and remove once it's done.
 ## Foothold
 
-what we can do is we need to bypass the fillers and upload a php file to gain code execution.I tried some other extensions like phtml, php5-7, phar and Phar I got worked up. To see what functions are available, I uploaded the phar file and used the phpinfo function. Unfortunately, normal system functions are disabled expect "proc_open".
+what we can do is we need to bypass the fillers and upload a php file to gain code execution.I uploaded a phar and got worked up because it wasn't included in the filter list. To see what functions are available, I uploaded the phar file and used the phpinfo function. Unfortunately, normal system functions are disabled except "proc_open.".
 
 
 Created a revershell with proc_open
@@ -110,7 +194,7 @@ Also i created python script to automated these foothold step.
 here is the github link [https://gist.github.com/akhils911dev/b85ee0c853bb91625f81665a6e753e84](https://gist.github.com/akhils911dev/b85ee0c853bb91625f81665a6e753e84)
 
 
-### www-data to developer
+### Setuid
 
 we found a coustom setuid binary from /dev directory of user developer home. which belongs with to a python script called siteisup_script.py.
 
@@ -134,7 +218,11 @@ if page.status_code == 200:
 else:
         print "Website is down"
 ```
-By examining the Python script, we can see that it uses our input as an url to determine whether the site is up or down. abusing this to inject Python system code to take the id_rsa of the developer.
+By examining the Python script, it seems like an old version of Python that looks like Python 2. It checks whether the site is up or down using our input as an url.
+
+### www-data to developer
+
+Python2 input() function allows to execute python code before the program crashes. we’ve imported the os module which provides the functionality of interacting with the Operating System and take the user developer id_rsa key.
 
 Payload 
 ```python
@@ -160,7 +248,7 @@ u0nhUpICU1FXr6tV2uE1LIb5TJrCIx479Elbc1MPrGCksQVV8EesI7kk5A2SrnNMxLe2ck
 IsQHQHxIcivCCIzB4R9FbOKdSKyZTHeZzjPwnU+FAAAFiHnDXHF5w1xxAAAAB3NzaC1yc2
 www-data@updown:/home/developer/dev$
 ```
-We can now see our code is successfully executed and it copy the developers id_rsa to /tmp
+We can now see it’ll be executed by the input() function and it copy the developers id_rsa to /tmp
 
 ## SSH as developer
 

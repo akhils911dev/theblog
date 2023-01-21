@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/akhils911dev.github.io\/theblog\/updown\/"
-        },"genre": "posts","keywords": "git, setuid, rce","wordcount":  1128 ,
+        },"genre": "posts","keywords": "git, setuid, rce","wordcount":  1497 ,
         "url": "https:\/\/akhils911dev.github.io\/theblog\/updown\/","datePublished": "2022-12-29T23:12:25+05:30","dateModified": "2022-12-29T23:12:25+05:30","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -104,8 +104,8 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Updown -Hack The Box</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://akhils911dev.github.io/theblog/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Akhil</a>
 </span>&nbsp;<span class="post-category">included in <a href="https://akhils911dev.github.io/theblog/categories/hackthebox/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>HackThebox</a>&nbsp;<a href="https://akhils911dev.github.io/theblog/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-29">2022-12-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1128 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-29">2022-12-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1497 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="https://akhils911dev.github.io/theblog/svg/loading.min.svg"
@@ -125,12 +125,14 @@
       <ul>
         <li><a href="#nmap">Nmap</a></li>
         <li><a href="#git">Git</a></li>
+        <li><a href="#source-code">Source code</a></li>
         <li><a href="#developers-site">Developers site</a></li>
       </ul>
     </li>
     <li><a href="#foothold">Foothold</a>
       <ul>
         <li><a href="#shell-as-www-data">Shell as www-data</a></li>
+        <li><a href="#setuid">Setuid</a></li>
         <li><a href="#www-data-to-developer">www-data to developer</a></li>
       </ul>
     </li>
@@ -191,11 +193,9 @@ We can see from the above picture it is a site that checks to see if a website i
 </span><span class="lnt">20
 </span><span class="lnt">21
 </span><span class="lnt">22
-</span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Git branch -a
-Git log main
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Git log main
 commit 8812785e31c879261050e72e20f298ae8c43b565
 Author: Abdou.Y &lt;84577967+ab2pentest@users.noreply.github.com&gt;
 Date:   Wed Oct <span class="m">20</span> 16:38:54 <span class="m">2021</span> +0200
@@ -219,9 +219,166 @@ index 44ff240..b317ab5 <span class="m">100644</span>
  Allow from <span class="nv">env</span><span class="o">=</span>Required-Header
 </code></pre></td></tr></table>
 </div>
-</div><p>Exploring the local git directory, which has only one branch, main, we checked every entry in the change log for main and found an interesting commit message.&ldquo;new technique in headers to protect our development vhost&rdquo; Using the git show command, we can see the changes in this commit. It has another juicy piece of information to access the domain: a custom header, &ldquo;Special-Dev: only4dev.&ldquo;From all of these details, we can understand that siteisup.htb has a vhost named &ldquo;dev&rdquo; and that it only has access via the custom header. We can also fuzz the subdoamin using ffuf to reveal the subdoamin.</p>
+</div><p>Exploring the local git directory, which has only one branch, main, first we checked every entry in the change log for main and found an interesting commit message.<strong>&ldquo;new technique in headers to protect our development vhost&rdquo;</strong> Using the git show command, we can see the changes in this commit. It has another juicy piece of information to access the domain: a custom header, &ldquo;Special-Dev: only4dev.&rdquo; added to .htaccess.</p>
+<p>Next i run &ldquo;git checkout .&rdquo; it dumps six files.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">user@ubuntu:~/htb/updown/dev$ ls -la
+total <span class="m">40</span>
+drwxr-xr-x <span class="m">3</span> user user <span class="m">4096</span> Jan <span class="m">21</span> 21:21 .
+drwxr-xr-x <span class="m">4</span> user user <span class="m">4096</span> Sep  <span class="m">5</span> 09:53 ..
+-rw-rw-r-- <span class="m">1</span> user user   <span class="m">59</span> Jan <span class="m">21</span> 21:21 admin.php
+-rw-rw-r-- <span class="m">1</span> user user  <span class="m">147</span> Jan <span class="m">21</span> 21:21 changelog.txt
+-rw-rw-r-- <span class="m">1</span> user user <span class="m">3145</span> Jan <span class="m">21</span> 21:21 checker.php
+drwxr-xr-x <span class="m">8</span> user user <span class="m">4096</span> Jan <span class="m">21</span> 21:24 .git
+-rw-rw-r-- <span class="m">1</span> user user  <span class="m">117</span> Jan <span class="m">21</span> 21:21 .htaccess
+-rw-rw-r-- <span class="m">1</span> user user  <span class="m">273</span> Jan <span class="m">21</span> 21:21 index.php
+-rw-rw-r-- <span class="m">1</span> user user <span class="m">5531</span> Jan <span class="m">21</span> 21:21 stylesheet.css
+</code></pre></td></tr></table>
+</div>
+</div><p>From all of these details, we can understand that siteisup.htb has a vhost named &ldquo;dev&rdquo; and that it only has access via the custom header. We can also fuzz the subdoamin using ffuf to reveal the subdoamin.</p>
+<h3 id="source-code">Source code</h3>
+<p>Reviewing checker.php</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php">    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&#34;header_wrap&#34;</span> <span class="nx">class</span><span class="o">=</span><span class="s2">&#34;outer&#34;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">header</span> <span class="nx">class</span><span class="o">=</span><span class="s2">&#34;inner&#34;</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">h1</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&#34;project_title&#34;</span><span class="o">&gt;</span><span class="nx">Welcome</span><span class="p">,</span><span class="o">&lt;</span><span class="nx">br</span><span class="o">&gt;</span> <span class="nx">Is</span> <span class="nx">My</span> <span class="nx">Website</span> <span class="nx">UP</span> <span class="o">?&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">h2</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&#34;project_tagline&#34;</span><span class="o">&gt;</span><span class="nx">In</span> <span class="k">this</span> <span class="nx">version</span> <span class="nx">you</span> <span class="nx">are</span> <span class="nx">able</span> <span class="nx">to</span> <span class="nx">scan</span> <span class="nx">a</span> <span class="k">list</span> <span class="nx">of</span> <span class="nx">websites</span> <span class="o">!&lt;/</span><span class="nx">h2</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="nx">header</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="nx">div</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&#34;main_content_wrap&#34;</span> <span class="nx">class</span><span class="o">=</span><span class="s2">&#34;outer&#34;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">section</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&#34;main_content&#34;</span> <span class="nx">class</span><span class="o">=</span><span class="s2">&#34;inner&#34;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">form</span> <span class="nx">method</span><span class="o">=</span><span class="s2">&#34;post&#34;</span> <span class="nx">enctype</span><span class="o">=</span><span class="s2">&#34;multipart/form-data&#34;</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">label</span><span class="o">&gt;</span><span class="k">List</span> <span class="nx">of</span> <span class="nx">websites</span> <span class="nx">to</span> <span class="nx">check</span><span class="o">:&lt;/</span><span class="nx">label</span><span class="o">&gt;&lt;</span><span class="nx">br</span><span class="o">&gt;&lt;</span><span class="nx">br</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&#34;file&#34;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&#34;file&#34;</span> <span class="nx">size</span><span class="o">=</span><span class="s2">&#34;50&#34;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&#34;check&#34;</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&#34;submit&#34;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&#34;Check&#34;</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="nx">form</span><span class="o">&gt;</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;check&#39;</span><span class="p">]){</span>
+  
+  <span class="c1"># File size must be less than 10kb.
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nv">$_FILES</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">][</span><span class="s1">&#39;size&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10000</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">die</span><span class="p">(</span><span class="s2">&#34;File too large!&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="nv">$file</span> <span class="o">=</span> <span class="nv">$_FILES</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">];</span>
+  
+  <span class="c1"># Check if extension is allowed.
+</span><span class="c1"></span>  <span class="nv">$ext</span> <span class="o">=</span> <span class="nx">getExtension</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">preg_match</span><span class="p">(</span><span class="s2">&#34;/php|php[0-9]|html|py|pl|phtml|zip|rar|gz|gzip|tar/i&#34;</span><span class="p">,</span><span class="nv">$ext</span><span class="p">)){</span>
+    <span class="k">die</span><span class="p">(</span><span class="s2">&#34;Extension not allowed!&#34;</span><span class="p">);</span>
+  <span class="p">}</span>
+  
+  <span class="c1"># Create directory to upload our file.
+</span><span class="c1"></span>  <span class="nv">$dir</span> <span class="o">=</span> <span class="s2">&#34;uploads/&#34;</span><span class="o">.</span><span class="nx">md5</span><span class="p">(</span><span class="nx">time</span><span class="p">())</span><span class="o">.</span><span class="s2">&#34;/&#34;</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">is_dir</span><span class="p">(</span><span class="nv">$dir</span><span class="p">)){</span>
+        <span class="nx">mkdir</span><span class="p">(</span><span class="nv">$dir</span><span class="p">,</span> <span class="mo">0770</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="c1"># Upload the file.
+</span><span class="c1"></span>  <span class="nv">$final_path</span> <span class="o">=</span> <span class="nv">$dir</span><span class="o">.</span><span class="nv">$file</span><span class="p">;</span>
+  <span class="nx">move_uploaded_file</span><span class="p">(</span><span class="nv">$_FILES</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">][</span><span class="s1">&#39;tmp_name&#39;</span><span class="p">],</span> <span class="s2">&#34;</span><span class="si">{</span><span class="nv">$final_path</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">);</span>
+  
+  <span class="c1"># Read the uploaded file.
+</span><span class="c1"></span>  <span class="nv">$websites</span> <span class="o">=</span> <span class="nx">explode</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span><span class="nx">file_get_contents</span><span class="p">(</span><span class="nv">$final_path</span><span class="p">));</span>
+  
+  <span class="k">foreach</span><span class="p">(</span><span class="nv">$websites</span> <span class="k">as</span> <span class="nv">$site</span><span class="p">){</span>
+    <span class="nv">$site</span><span class="o">=</span><span class="nx">trim</span><span class="p">(</span><span class="nv">$site</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">preg_match</span><span class="p">(</span><span class="s2">&#34;#file://#i&#34;</span><span class="p">,</span><span class="nv">$site</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">preg_match</span><span class="p">(</span><span class="s2">&#34;#data://#i&#34;</span><span class="p">,</span><span class="nv">$site</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">preg_match</span><span class="p">(</span><span class="s2">&#34;#ftp://#i&#34;</span><span class="p">,</span><span class="nv">$site</span><span class="p">)){</span>
+      <span class="nv">$check</span><span class="o">=</span><span class="nx">isitup</span><span class="p">(</span><span class="nv">$site</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="nv">$check</span><span class="p">){</span>
+        <span class="k">echo</span> <span class="s2">&#34;&lt;center&gt;</span><span class="si">{</span><span class="nv">$site</span><span class="si">}</span><span class="s2">&lt;br&gt;&lt;font color=&#39;green&#39;&gt;is up ^_^&lt;/font&gt;&lt;/center&gt;&#34;</span><span class="p">;</span>
+      <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">&#34;&lt;center&gt;</span><span class="si">{</span><span class="nv">$site</span><span class="si">}</span><span class="s2">&lt;br&gt;&lt;font color=&#39;red&#39;&gt;seems to be down :(&lt;/font&gt;&lt;/center&gt;&#34;</span><span class="p">;</span>
+      <span class="p">}</span> 
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="k">echo</span> <span class="s2">&#34;&lt;center&gt;&lt;font color=&#39;red&#39;&gt;Hacking attempt was detected !&lt;/font&gt;&lt;/center&gt;&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  
+  <span class="c1"># Delete the uploaded file.
+</span><span class="c1"></span>  <span class="o">@</span><span class="nx">unlink</span><span class="p">(</span><span class="nv">$final_path</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>It seems that we can upload files to check if the website is up or down. When we upload the file, it goes to the /uploads directory and is named with the MD5 hash. It was also removed after it was checked. Also, it has a filter to validate the extensions and some other security measures.</p>
 <h3 id="developers-site">Developers site</h3>
-<p>Adding dev.siteisup.htb to host file and the help of burpsuite match and replace option to add the coustom header we can opened the dev site.
+<p>Adding dev.siteisup.htb to host file and the help of burpsuite match and replace option to add the coustom header we can now opened the dev site.
 <img
         class="lazyload"
         src="https://akhils911dev.github.io/theblog/svg/loading.min.svg"
@@ -230,7 +387,7 @@ index 44ff240..b317ab5 <span class="m">100644</span>
         data-sizes="auto"
         alt="/img/updown-dev.png"
         title="image" /></p>
-<p>It seems that we can upload files to check if the website is up or down. To test the upload functions, I created a txt file with my tun0 interface IP. When we upload the file, it goes to the /uploads directory and is named with the MD5 hash. It was also removed after it was checked.</p>
+<p>To test the upload functions, I created a txt file with my tun0 interface IP.</p>
 <p>Upload directory
 <img
         class="lazyload"
@@ -249,9 +406,9 @@ index 44ff240..b317ab5 <span class="m">100644</span>
         data-sizes="auto"
         alt="/img/updown-ourfile.png"
         title="image" /></p>
-<p>Also, I tried to upload a php file, but it was failed due to some fillers. We got the response, &ldquo;Extension not allowed!&rdquo;</p>
+<p>It was successfully hit the callback to my server and remove once it&rsquo;s done.</p>
 <h2 id="foothold">Foothold</h2>
-<p>what we can do is we need to bypass the fillers and upload a php file to gain code execution.I tried some other extensions like phtml, php5-7, phar and Phar I got worked up. To see what functions are available, I uploaded the phar file and used the phpinfo function. Unfortunately, normal system functions are disabled expect &ldquo;proc_open&rdquo;.</p>
+<p>what we can do is we need to bypass the fillers and upload a php file to gain code execution.I uploaded a phar and got worked up because it wasn&rsquo;t included in the filter list. To see what functions are available, I uploaded the phar file and used the phpinfo function. Unfortunately, normal system functions are disabled except &ldquo;proc_open.&rdquo;.</p>
 <p>Created a revershell with proc_open</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -320,7 +477,7 @@ index 44ff240..b317ab5 <span class="m">100644</span>
 <p>Also i created python script to automated these foothold step.<br>
 here is the github link <a href="https://gist.github.com/akhils911dev/b85ee0c853bb91625f81665a6e753e84" target="_blank" rel="noopener noreffer">https://gist.github.com/akhils911dev/b85ee0c853bb91625f81665a6e753e84</a>
 </p>
-<h3 id="www-data-to-developer">www-data to developer</h3>
+<h3 id="setuid">Setuid</h3>
 <p>we found a coustom setuid binary from /dev directory of user developer home. which belongs with to a python script called siteisup_script.py.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -365,7 +522,9 @@ import requests
         print <span class="s2">&#34;Website is down&#34;</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>By examining the Python script, we can see that it uses our input as an url to determine whether the site is up or down. abusing this to inject Python system code to take the id_rsa of the developer.</p>
+</div><p>By examining the Python script, it seems like an old version of Python that looks like Python 2. It checks whether the site is up or down using our input as an url.</p>
+<h3 id="www-data-to-developer">www-data to developer</h3>
+<p>Python2 input() function allows to execute python code before the program crashes. we’ve imported the os module which provides the functionality of interacting with the Operating System and take the user developer id_rsa key.</p>
 <p>Payload</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -416,7 +575,7 @@ IsQHQHxIcivCCIzB4R9FbOKdSKyZTHeZzjPwnU+FAAAFiHnDXHF5w1xxAAAAB3NzaC1yc2
 www-data@updown:/home/developer/dev$
 </code></pre></td></tr></table>
 </div>
-</div><p>We can now see our code is successfully executed and it copy the developers id_rsa to /tmp</p>
+</div><p>We can now see it’ll be executed by the input() function and it copy the developers id_rsa to /tmp</p>
 <h2 id="ssh-as-developer">SSH as developer</h2>
 <p>Copy the key to our local machine and connected through ssh</p>
 <div class="highlight"><div class="chroma">
