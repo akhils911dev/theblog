@@ -52,7 +52,7 @@ Open the db file with a sqlite viewer.
 
 We found mysql creds from data_source table.
 
-## FOOTHOLD
+## Foothold
 
 ### MySQL
 
