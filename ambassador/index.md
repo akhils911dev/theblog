@@ -212,5 +212,5 @@ uid=0(root) gid=0(root) groups=0(root)
 
 We got a reverse shell as root
 
-Thank you for reading my blog; I hope you enjoyed it..
+Thank you for reading my blog; I hope you enjoyed it.
 

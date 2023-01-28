@@ -7,12 +7,12 @@
         <title>Ambassador -Hack The Box - Blog</title><meta name="Description" content=""><meta property="og:title" content="Ambassador -Hack The Box" />
 <meta property="og:description" content="Summary Starting with a public exploit in Grafana, which is an unauthenticated path-travesel, leads to dumping sqlite data.We obtained a MySQL remote access credential from that dump and the SSH credential from the MySQL databases. taking ssh and finding a internal project in the /opt directory.Checking the git commits of the project, it leaks a token of the Consul app and has an API service listening internally and running as root, registering a service using the leaked token via the Consul API for root access." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://akhils911dev.github.io/theblog/ambassador/" /><meta property="og:image" content="https://akhils911dev.github.io/img/ambassador.png" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://akhils911dev.github.io/theblog/ambassador/" /><meta property="og:image" content="https://akhils911dev.github.io/posts/ambassador.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-01-27T13:43:40+00:00" />
 <meta property="article:modified_time" content="2023-01-27T13:43:40+00:00" /><meta property="og:site_name" content="Blog by a security researcher" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://akhils911dev.github.io/img/ambassador.png"/>
+<meta name="twitter:image" content="https://akhils911dev.github.io/posts/ambassador.png"/>
 
 <meta name="twitter:title" content="Ambassador -Hack The Box"/>
 <meta name="twitter:description" content="Summary Starting with a public exploit in Grafana, which is an unauthenticated path-travesel, leads to dumping sqlite data.We obtained a MySQL remote access credential from that dump and the SSH credential from the MySQL databases. taking ssh and finding a internal project in the /opt directory.Checking the git commits of the project, it leaks a token of the Consul app and has an API service listening internally and running as root, registering a service using the leaked token via the Consul API for root access."/>
@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/akhils911dev.github.io\/theblog\/ambassador\/"
-        },"image": ["https:\/\/akhils911dev.github.io\/img\/ambassador.png"],"genre": "posts","wordcount":  1109 ,
+        },"genre": "posts","wordcount":  1109 ,
         "url": "https:\/\/akhils911dev.github.io\/theblog\/ambassador\/","datePublished": "2023-01-27T13:43:40+00:00","dateModified": "2023-01-27T13:43:40+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -505,7 +505,7 @@ root@ambassador:/# id
 </code></pre></td></tr></table>
 </div>
 </div><p>We got a reverse shell as root</p>
-<p>Thank you for reading my blog; I hope you enjoyed it..</p>
+<p>Thank you for reading my blog; I hope you enjoyed it.</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
