@@ -108,20 +108,19 @@
 <a href="https://akhils911dev.github.io/theblog/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden="true"></i></a>
 </div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-            <a href="https://akhils911dev.github.io/theblog/health/"><img
+            <a href="https://akhils911dev.github.io/theblog/ambassador/"><img
         class="lazyload"
         src="https://akhils911dev.github.io/theblog/svg/loading.min.svg"
-        data-src="https://akhils911dev.github.io/theblog/img/Health.png"
-        data-srcset="https://akhils911dev.github.io/theblog/img/Health.png, https://akhils911dev.github.io/theblog/img/Health.png 1.5x, https://akhils911dev.github.io/theblog/img/Health.png 2x"
+        data-src="https://akhils911dev.github.io/theblog/img/ambassador.png"
+        data-srcset="https://akhils911dev.github.io/theblog/img/ambassador.png, https://akhils911dev.github.io/theblog/img/ambassador.png 1.5x, https://akhils911dev.github.io/theblog/img/ambassador.png 2x"
         data-sizes="auto"
-        alt="/img/Health.png"
-        title="/img/Health.png" /></a>
+        alt="/img/ambassador.png"
+        title="/img/ambassador.png" /></a>
         </div><h1 class="single-title" itemprop="name headline">
-        <a href="https://akhils911dev.github.io/theblog/health/">Health -Hack The Box</a>
+        <a href="https://akhils911dev.github.io/theblog/ambassador/">Ambassador -Hack The Box</a>
     </h1><div class="post-meta"><span class="post-author"><a href="https://akhils911dev.github.io/theblog/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Akhil</a>
-</span>&nbsp;<span class="post-publish">published on <time datetime="2022-12-29">2022-12-29</time></span>&nbsp;<span class="post-category">included in <a href="https://akhils911dev.github.io/theblog/categories/hackthebox/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>HackThebox</a>&nbsp;<a href="https://akhils911dev.github.io/theblog/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content">Summary Starting with the web application that has a webhook feature.It is vulnerable to SSRF using a Python script called &ldquo;redirect.py&rdquo; to redirect traffic to the web application that has running internaly on port 3000, and then attempting to perform a SQL injection attack by sending UNION ALL SELECT statements through the redirecter and enumerate databases in order to extract information from the database.using credntioal we got from database to take ssh as user.</div><div class="post-footer">
-        <a href="https://akhils911dev.github.io/theblog/health/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/webhook/">webhook</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/ssrf/">SSRF</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/sqli/">SQLi</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/cracking/">Cracking</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/private-key/">Private-key</a></div></div>
+</span>&nbsp;<span class="post-publish">published on <time datetime="2023-01-27">2023-01-27</time></span></div><div class="content">Summary Starting with a public exploit in Grafana, which is an unauthenticated path-travesel, leads to dumping sqlite data.We obtained a MySQL remote access credential from that dump and the SSH credential from the MySQL databases. taking ssh and finding a internal project in the /opt directory.Checking the git commits of the project, it leaks a token of the Consul app and has an API service listening internally and running as root, registering a service using the leaked token via the Consul API for root access.</div><div class="post-footer">
+        <a href="https://akhils911dev.github.io/theblog/ambassador/">Read More</a></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
             <a href="https://akhils911dev.github.io/theblog/updown/"><img
         class="lazyload"
@@ -134,9 +133,24 @@
         </div><h1 class="single-title" itemprop="name headline">
         <a href="https://akhils911dev.github.io/theblog/updown/">Updown -Hack The Box</a>
     </h1><div class="post-meta"><span class="post-author"><a href="https://akhils911dev.github.io/theblog/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Akhil</a>
-</span>&nbsp;<span class="post-publish">published on <time datetime="2022-12-29">2022-12-29</time></span>&nbsp;<span class="post-category">included in <a href="https://akhils911dev.github.io/theblog/categories/hackthebox/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>HackThebox</a>&nbsp;<a href="https://akhils911dev.github.io/theblog/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content">Summary Starting with a leaky local git directory from the siteisup.htb server, which led to accessing another subdomain. It has a development feature where we can upload files. From there, we can bypass the upload restriction with the phar file and upload a PHP reverse shell with the php proc_open function. after gaining a foothold In the user&rsquo;s home directory, we discovered a custom setuid binary that allowed us to gain more privileged access to the server.</div><div class="post-footer">
+</span>&nbsp;<span class="post-publish">published on <time datetime="2023-01-21">2023-01-21</time></span>&nbsp;<span class="post-category">included in <a href="https://akhils911dev.github.io/theblog/categories/hackthebox/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>HackThebox</a>&nbsp;<a href="https://akhils911dev.github.io/theblog/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content">Summary Starting with a leaky local git directory from the siteisup.htb server, which led to accessing another subdomain. It has a development feature where we can upload files. From there, we can bypass the upload restriction with the phar file and upload a PHP reverse shell with the php proc_open function. after gaining a foothold In the user&rsquo;s home directory, we discovered a custom setuid binary that allowed us to gain more privileged access to the server.</div><div class="post-footer">
         <a href="https://akhils911dev.github.io/theblog/updown/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/git/">git</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/setuid/">setuid</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/rce/">rce</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
+            <a href="https://akhils911dev.github.io/theblog/health/"><img
+        class="lazyload"
+        src="https://akhils911dev.github.io/theblog/svg/loading.min.svg"
+        data-src="https://akhils911dev.github.io/theblog/img/Health.png"
+        data-srcset="https://akhils911dev.github.io/theblog/img/Health.png, https://akhils911dev.github.io/theblog/img/Health.png 1.5x, https://akhils911dev.github.io/theblog/img/Health.png 2x"
+        data-sizes="auto"
+        alt="/img/Health.png"
+        title="/img/Health.png" /></a>
+        </div><h1 class="single-title" itemprop="name headline">
+        <a href="https://akhils911dev.github.io/theblog/health/">Health -Hack The Box</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://akhils911dev.github.io/theblog/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Akhil</a>
+</span>&nbsp;<span class="post-publish">published on <time datetime="2023-01-07">2023-01-07</time></span>&nbsp;<span class="post-category">included in <a href="https://akhils911dev.github.io/theblog/categories/hackthebox/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>HackThebox</a>&nbsp;<a href="https://akhils911dev.github.io/theblog/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content">Summary Starting with the web application that has a webhook feature.It is vulnerable to SSRF using a Python script called &ldquo;redirect.py&rdquo; to redirect traffic to the web application that has running internaly on port 3000, and then attempting to perform a SQL injection attack by sending UNION ALL SELECT statements through the redirecter and enumerate databases in order to extract information from the database.using credntioal we got from database to take ssh as user.</div><div class="post-footer">
+        <a href="https://akhils911dev.github.io/theblog/health/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/webhook/">webhook</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/ssrf/">SSRF</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/sqli/">SQLi</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/cracking/">Cracking</a>,&nbsp;<a href="https://akhils911dev.github.io/theblog/tags/private-key/">Private-key</a></div></div>
 </article></div></div>
             </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
