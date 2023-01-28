@@ -31,7 +31,6 @@ The post reveal their is an developer account for connecting ssh. Username is **
 Connecting to port 3000 we can see a grafana login page.
 
 ![image](/img/ambassador-grafana.png)
-
 >Grafana is a multi-platform open source analytics and interactive visualization web application. It provides charts, graphs, and alerts for the web when connected to supported data sources
 
 ### CVE-2021-43798
